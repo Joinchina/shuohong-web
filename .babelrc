@@ -1,0 +1,7 @@
+//presets用来存放一些预设     plugins用来存放一些插件 
+  {
+    "presets": [
+      "es2015"
+    ],
+    "plugins" : [ ]
+  }
