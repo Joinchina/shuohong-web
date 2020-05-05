@@ -24,7 +24,7 @@ function getUserInfo(){
             },
         },
         function(data){
-            str='<img src="'+data.headPortrait+'" alt="">'+
+            str='<img src="./img/Do1.png" alt="">'+
             '<h1>Hi：<span>'+data.nickName+'</span></h1>'+
             '<h1>当前可用积分：<span>'+data.points+'</span></h1>'+
             '<h1>电话：<span>'+data.phoneNum+'</span></h1>'+
@@ -79,7 +79,6 @@ function gitvideolist(){
             // console.log(data)
             if(data.code===0){
                 var data=data.data;
-                // var data=[{"id":1,"filetype":1,"passageWaySize":2,"fileName":"海底世界","picAddress":"http://p.znkjcz.com/page1.png"},{"id":3,"filetype":1,"passageWaySize":2,"fileName":"refer","picAddress":"http://p.znkjcz.com/page1.png"},{"id":4,"filetype":1,"passageWaySize":2,"fileName":"未发文","picAddress":"http://p.znkjcz.com/page1.png"},{"id":5,"filetype":1,"passageWaySize":2,"fileName":"为人父骨肉同胞","picAddress":"http://p.znkjcz.com/page1.png"},{"id":6,"filetype":1,"passageWaySize":2,"fileName":"柔荑花特惠","picAddress":"http://p.znkjcz.com/page1.png"},{"id":7,"filetype":1,"passageWaySize":2,"fileName":"施工图如果让他","picAddress":"http://p.znkjcz.com/page1.png"}]
                 var str='';
                 for (var i = 0; i < data.length; i++) {
                     str+='<a href="/detail.html?fileId='+data[i].id+'&filetype='+data[i].filetype+'" target="_blank">'+
@@ -93,10 +92,16 @@ function gitvideolist(){
                             '</div>'+
                         '</a>'                    
                 };
-                console.log(str)
                 $('.material_box').html(str)        
             }else{
-                alert(data.msg)
+                if(data.code===-1){
+                    alert(data.msg)
+                    window.location.href='/login.html'
+                    remove('user')
+                }else{
+                    alert(data.msg)
+                }
+                // alert(data.msg)
             }
         }
     )
@@ -117,7 +122,6 @@ function gitplaylist(){
             // console.log(data)
             if(data.code===0){
                 var data=data.data;
-                // var data=[{"id":1,"filetype":1,"passageWaySize":2,"fileName":"海底世界","picAddress":"http://p.znkjcz.com/page1.png"},{"id":3,"filetype":1,"passageWaySize":2,"fileName":"refer","picAddress":"http://p.znkjcz.com/page1.png"},{"id":4,"filetype":1,"passageWaySize":2,"fileName":"未发文","picAddress":"http://p.znkjcz.com/page1.png"},{"id":5,"filetype":1,"passageWaySize":2,"fileName":"为人父骨肉同胞","picAddress":"http://p.znkjcz.com/page1.png"},{"id":6,"filetype":1,"passageWaySize":2,"fileName":"柔荑花特惠","picAddress":"http://p.znkjcz.com/page1.png"},{"id":7,"filetype":1,"passageWaySize":2,"fileName":"施工图如果让他","picAddress":"http://p.znkjcz.com/page1.png"}]
                 var str='';
                 for (var i = 0; i < data.length; i++) {
                     str+='<a href="/detail.html?fileId='+data[i].id+'&filetype='+data[i].filetype+'" target="_blank">'+

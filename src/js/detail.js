@@ -29,7 +29,7 @@ function getDetail(user,fileId,filetype){
         {
             url:'/getResourceDetail',
             data:{
-                'fileId':fileId,
+                'id':fileId,
                 'filetype':filetype,
                 'userId':user.id,
                 'sekugou':user.sekugou
@@ -44,7 +44,7 @@ function getDetail(user,fileId,filetype){
                         '<h1>'+data.fileName+'</h1>'+
                     '</div>'+
                     '<div class="video_box">'+
-                        '<video src="'+data.moveAddress+'" controls="controls"></video>'+
+                        '<video src="'+data.resourceAddress+'" controls="controls"></video>'+
                     '</div>'+
                     '<div class="describe">'+
                         '<div class="left">'+
@@ -52,15 +52,17 @@ function getDetail(user,fileId,filetype){
                             '<h1>格式：<span>'+data.type+'</span> 分辨率：<span>'+data.resolvingPower+'</span></h1>'+
                         '</div>'+
                         '<div class="right">'+
-                            '<button>点击下载</button>'+
+                            '<button onclick="downVideo()">点击下载</button>'+
                             '<h1>下载需要'+data.deduction+'积分</h1>'+
                         '</div>'+
                     '</div>'
             $('.detail_box').html(str);
             var str2='';
-            for (var i = 0; i < data.picS.length; i++) {
+            var imgarr=[];
+            imgarr=data.picS.split(',')
+            for (var i = 0; i < imgarr.length; i++) {
                 str2+='<div class="img_box">'+
-                        '<img src="'+data.picS[i]+'" alt=""/>'+
+                        '<img src="'+imgarr[i]+'" alt=""/>'+
                     '</div>'                
             }        
             $('.detail_box').append(str2);        
@@ -77,9 +79,9 @@ function downVideo(){
     }else{
         http.get(
             {
-                url:'/',
+                url:'/getDownloadUrl',
                 data:{
-                    'fileId':url.fileId,
+                    'id':url.fileId,
                     'filetype':url.filetype,
                     'userId':user.id,
                     'sekugou':user.sekugou
@@ -87,7 +89,15 @@ function downVideo(){
             },
             function(data){
                 if(data.code===0){
-                    window.open(data.data,'_blank')
+                    // window.open(data.data,'_blank')                    
+                    let link = document.createElement('a')
+                    document.body.appendChild(link)
+                    link.style.display = 'none'
+                    link.href = data.data
+                    link.target='_blank'
+                    link.download = ''
+                    link.click()
+                    document.body.removeChild(link)
                 }else{
                     alert(data.msg)
                 }
@@ -95,39 +105,4 @@ function downVideo(){
             }
         )
     }
-}
-function down(){
-    //通常我们是使用一个form流去做下载
-    // var form=$("<form>");//定义一个form表单
-    // form.attr("style","display:none");
-    // form.attr("target","");
-    // form.attr("method","get");  //请求类型
-    // form.attr("action",url);   //请求地址
-    // $("body").append(form);//将表单放置在web中
-    // var input1=$("<input>");
-    // input1.attr("type","hidden");
-    // input1.attr("name","fileId");
-    // input1.attr("value",url.fileId);
-    // form.append(input1);
-
-    // var input2=$("<input>");
-    // input2.attr("type","hidden");
-    // input2.attr("name","filetype");
-    // input2.attr("value",url.filetype);
-    // form.append(input2);
-
-    // var input3=$("<input>");
-    // input2.attr("type","hidden");
-    // input2.attr("name","userId");
-    // input2.attr("value",user.id);
-    // form.append(input3);
-
-    // var input4=$("<input>");
-    // input2.attr("type","hidden");
-    // input2.attr("name","sekugou");
-    // input2.attr("value",user.sekugou);
-    // form.append(input4);
-
-    // form.submit();//表单提交
-
 }

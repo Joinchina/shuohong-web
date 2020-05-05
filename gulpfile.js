@@ -33,7 +33,7 @@ gulp.task('compress_js',function(){
 
 // JS生成文件hash编码并生成 rev-manifest.json文件名对照映射  
 gulp.task('revHtmlJs', function () {
-    return gulp.src(['./build/js/*.json', './build/index.html'])
+    return gulp.src(['./build/js/*.json', './build/index.html','./build/login.html','./build/detail.html'])
         .pipe(revCollector())  // 替换html中对应的记录  
         .pipe(gulp.dest('build/'))
 });
@@ -55,7 +55,7 @@ gulp.task('compress_sass', function(){
 
 // CSS生成文件hash编码并生成 rev-manifest.json文件名对照映射
 gulp.task('revHtmlCss', function () {
-    return gulp.src(['./build/css/*.json', './build/index.html'])  
+    return gulp.src(['./build/css/*.json', './build/index.html','./build/login.html','./build/detail.html'])  
         .pipe(revCollector())  // 替换html中对应的记录 
         .pipe(gulp.dest('./build/'))
 }); 
