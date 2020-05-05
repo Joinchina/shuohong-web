@@ -1,55 +1,59 @@
-import $ from './jquery-1.8.3.min'
+
 //设置端口号
-const api;
+var basurl;
 if (window.location.host.indexOf('shuohongkeji') > -1) {
     //线上环境
-    api = "http://p.shuohongkeji.com"
+    basurl = ""
 } else {
     //开发环境
-    api = "http://p.shuohongkeji.com"
+    basurl = "/api"
 };
 //封装ajax请求
-const post =(url,data)=>{
-    return new Promise((resolve,reject)=>{
+var http={
+    post:function(options,callback){
         $.ajax({
-            url: api+url,
-            type: 'post',
-            data:data,
+            url: basurl+options.url,
+            type:'post',
+            data:JSON.stringify(options.data),
             headers: {
                 Accept: "application/json; charset=utf-8"
             },
             contentType:'application/json',
             dataType: 'json',
             success: function (res) {
-                resolve(res)
+                if(res.code===0){
+                    callback(res.data)
+                }else{
+                    alert(res.msg)
+                }
             },
             error: function (err) {
-                reject(err)
+                err.msg
             },
         })
-    })
-}
-const get =(url,data)=>{
-    return new Promise((resolve,reject)=>{
+    },
+    get:function(options,callback){
         $.ajax({
-            url: baseUrl+url,
-            type: 'get',
-            data:data,
+            url: basurl+options.url,
+            type:'get',
+            data:options.data,
             headers: {
                 Accept: "application/json; charset=utf-8"
             },
             contentType:'application/json',
             dataType: 'json',
             success: function (res) {
-                resolve(res)
+                // console.log(res)
+                callback(res)
+                // if(res.code===0){
+                //     callback(res.data)
+                // }else{
+                //     alert(res.msg)
+                // }
             },
             error: function (err) {
-                reject(err)
+                err.msg
             },
         })
-    })
-}
-export {
-    post,
-    get
+    }
 }
