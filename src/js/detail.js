@@ -38,7 +38,7 @@ function getDetail(user,fileId,filetype){
         function(data){
             console.log(data)
             var data=data.data
-            // var data={"id":1,"filetype":1,"passageWaySize":2,"fileName":"海底世界","picAddress":"http:xxx.jpg","fileAddress":"http:xxx.mp4","resourceAddress":"http:xxx.mp4","type":"MP4","resolvingPower":"1280*768","picS":['httpxxx.jpg','httpxxx.jpg'],"deduction":60};
+            // var data={"id":1,"filetype":1,"passageWaySize":2,"fileName":"海底世界","picAddress":"http:xxx.jpg","fileAddress":"http:xxx.mp4","resourceAddress":"http:xxx.mp4","type":"MP4","resolvingPower":"1280*768","picS":['httpxxx.jpg','httpxxx.jpg'],"deduction":60};data.describe
             deduction=data.deduction;
             var str='<div class="header">'+
                         '<h1>'+data.fileName+'</h1>'+

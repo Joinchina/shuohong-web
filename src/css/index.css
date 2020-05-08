@@ -134,7 +134,7 @@
     overflow: hidden;
 }
 .channel_box span{
-    width: 10%;
+    width: 6.25%;
     border: 1px solid #ddd;
     float: left;
     border-top: none;
@@ -143,6 +143,7 @@
     text-align: center;
     font-size: 14px;
     color:#333;
+    cursor: pointer;
 }
 .channel_choose{
     border: 1px solid rgb(24, 144, 255)!important;
@@ -151,9 +152,10 @@
 }
 
 .material_box{
-    width: 100%;
+    width: 1220px;
     overflow: hidden;
     background-color: #ffffff;
+    margin: 0 auto;
     margin-top: 20px;
 }
 .material_box a {
@@ -161,7 +163,7 @@
     float: left;
 }
 .material_box .video{
-    width: 300px;
+    width:285px;
     overflow: hidden;
     float: left;
     margin: 0 10px 20px 10px;
@@ -174,7 +176,7 @@
     /* box-shadow: 0px 10px 10px rgb(0,0,0,0.2); */
 }
 .material_box .video .img_box{
-    width: 300px;
+    width: 285px;
     height: 200px;
     overflow: hidden;
 }   
@@ -182,7 +184,7 @@
     height:200px;
 }
 .material_box .video .text_box{
-    width: 300px;
+    width: 285px;
     height: 42px;
 } 
 .material_box .video .text_box p{
