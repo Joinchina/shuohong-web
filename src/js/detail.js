@@ -7,19 +7,16 @@ var deduction=0;
         window.location.href='/login.html'
     };
     user=user;
-    console.log(user)
     //获取url参数
-    console.log(window.location.search)
     var urldata=window.location.search.substr(1,window.location.search.length-1);
     var arr=[];
     var obj={};
     var arr1=[];
     arr=urldata.split('&');
     for (var i = 0; i < arr.length; i++) {
-        arr1=arr[i].split('=')  
-        obj[arr1[0]]=Number(arr1[1])      
+        arr1=arr[i].split('=')
+        obj[arr1[0]]=Number(arr1[1])
     }
-    console.log(obj)
     url=obj;
     getDetail(user,obj.fileId,obj.filetype)
 })()
@@ -48,7 +45,7 @@ function getDetail(user,fileId,filetype){
                     '</div>'+
                     '<div class="describe">'+
                         '<div class="left">'+
-                            '<h1>文字描述：<span>'+data.describe+'</span></h1>'+
+                            '<h1>文字描述：<span>'+data.describes+'</span></h1>'+
                             '<h1>格式：<span>'+data.type+'</span> 分辨率：<span>'+data.resolvingPower+'</span></h1>'+
                         '</div>'+
                         '<div class="right">'+
@@ -63,10 +60,10 @@ function getDetail(user,fileId,filetype){
             for (var i = 0; i < imgarr.length; i++) {
                 str2+='<div class="img_box">'+
                         '<img src="'+imgarr[i]+'" alt=""/>'+
-                    '</div>'                
-            }        
-            $('.detail_box').append(str2);        
-            
+                    '</div>'
+            }
+            $('.detail_box').append(str2);
+
         }
     )
 }
@@ -89,7 +86,7 @@ function downVideo(){
             },
             function(data){
                 if(data.code===0){
-                    // window.open(data.data,'_blank')                    
+                    // window.open(data.data,'_blank')
                     let link = document.createElement('a')
                     document.body.appendChild(link)
                     link.style.display = 'none'
